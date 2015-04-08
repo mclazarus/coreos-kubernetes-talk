@@ -1,0 +1,52 @@
+{
+    "id": "pgview-stable-v1",
+    "kind": "ReplicationController",
+    "apiVersion": "v1beta1",
+    "desiredState": {
+        "replicas": 1,
+        "replicaSelector": {
+            "name": "pgview-stable-v1",
+            "environment": "production",
+            "app": "pgview",
+            "track": "stable"
+        },
+        "podTemplate": {
+            "desiredState": {
+                "manifest": {
+                    "id": "pgview-stable-v1",
+                    "version": "v1beta1",
+                    "containers": [
+                        {
+                            "name": "pgview",
+                            "image": "pgview:1.0.0",
+                            "imagePullPolicy": "PullIfNotPresent",
+                            "cpu": 100,
+                            "memory": 10000000,
+                            "ports": [{"containerPort": 80}]
+                        },
+                        {
+                            "name": "memcached",
+                            "image": "memcached",
+                            "imagePullPolicy": "PullIfNotPresent",
+                            "cpu": 100,
+                            "memory": 10000000,
+                            "ports": [{"containerPort": 11211}]
+                        }
+                    ]
+                }
+            },
+            "labels": {
+                "name": "pgview-stable-v1",
+                "environment": "production",
+                "app": "pgview",
+                "track": "stable"
+            }
+        }
+    },
+    "labels": {
+        "name": "pgview-stable-v1",
+        "app": "pgview",
+        "environment": "production",
+        "track": "stable"
+    }
+}

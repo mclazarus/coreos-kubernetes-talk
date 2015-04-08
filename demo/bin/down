@@ -1,0 +1,9 @@
+#!/bin/bash
+
+vmrun="/Applications/VMware Fusion.app/Contents/Library/vmrun"
+
+for vm in node2 node1 node0 kubernetes etcd; do
+  echo "stopping ${vm}..."
+  "$vmrun" stop "/Users/kelseyhightower/Documents/Virtual Machines.localized/${vm}.vmwarevm/${vm}.vmx"
+  sleep 4
+done

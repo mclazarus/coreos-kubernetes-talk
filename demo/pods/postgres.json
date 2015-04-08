@@ -1,0 +1,40 @@
+{
+    "id": "postgres",
+    "kind": "Pod",
+    "apiVersion": "v1beta1",
+    "desiredState": {
+        "manifest": {
+            "id": "postgres",
+            "version": "v1beta1",
+            "volumes": [{
+                "name": "pgdata",
+                "source": {
+                    "hostDir": {"path": "/var/lib/postgresql/data"}
+                }
+            }],
+            "containers": [{
+                "name": "postgres",
+                "image": "postgres",
+                "imagePullPolicy": "PullIfNotPresent",
+                "ports": [{"containerPort": 5432}],
+                "env": [{
+                    "name": "POSTGRES_PASSWORD",
+                    "value": "coreos"
+                }],
+                "volumeMounts": [{
+                    "name": "pgdata",
+                    "mountPath": "/var/lib/postgresql/data",
+                    "readOnly": false
+                }]
+            }]
+        }
+    },
+    "labels": {
+        "name": "postgres",
+        "environment": "production"
+    },
+    "nodeSelector": {
+        "role": "database",
+        "environment": "production"
+    }
+}

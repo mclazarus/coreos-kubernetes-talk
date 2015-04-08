@@ -1,0 +1,21 @@
+{
+    "id": "helloStableController",
+    "kind": "ReplicationController",
+    "apiVersion": "v1beta1",
+    "desiredState": {
+        "replicas": 1,
+        "replicaSelector": {
+            "name": "hello",
+            "environment": "prod",
+            "track": "stable"
+        },
+        "podTemplate": {
+            ...
+        }
+    },
+    "labels": {
+        "name": "hello",
+        "environment": "prod",
+        "track": "stable"
+    }
+}

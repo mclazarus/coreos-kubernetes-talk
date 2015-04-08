@@ -1,0 +1,15 @@
+{
+    "id": "192.168.12.102",
+    "kind": "Minion",
+    "apiVersion": "v1beta1",
+    "resources": {
+        "capacity": {
+            "cpu": 1000,
+            "memory": 1073741824
+        }
+    },
+    "labels": {
+        "name": "node2",
+        "environment": "production"
+    }
+}

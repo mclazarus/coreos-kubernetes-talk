@@ -1,0 +1,9 @@
+#!/bin/bash
+
+vmrun="/Applications/VMware Fusion.app/Contents/Library/vmrun"
+
+for vm in node2 node1 node0 kubernetes etcd; do
+  echo "reverting ${vm} to base snapshot"
+  "$vmrun" revertToSnapshot "/Users/kelseyhightower/Documents/Virtual Machines.localized/${vm}.vmwarevm/${vm}.vmx" base
+  sleep 4
+done

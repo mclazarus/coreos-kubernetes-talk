@@ -1,0 +1,50 @@
+{
+    "id": "pgview-canary",
+    "kind": "ReplicationController",
+    "apiVersion": "v1beta1",
+    "desiredState": {
+        "replicas": 1,
+        "replicaSelector": {
+            "name": "pgview",
+            "environment": "production",
+            "app": "pgview",
+            "track": "canary"
+        },
+        "podTemplate": {
+            "desiredState": {
+                "manifest": {
+                    "id": "pgviewCanaryController",
+                    "version": "v1beta1",
+                    "containers": [
+                        {
+                            "name": "pgview",
+                            "image": "pgview:2.0.0",
+                            "cpu": 100,
+                            "memory": 10000000,
+                            "ports": [{"containerPort": 80}]
+                        },
+                        {
+                            "name": "memcached",
+                            "image": "memcached",
+                            "cpu": 100,
+                            "memory": 10000000,
+                            "ports": [{"containerPort": 11211}]
+                        }
+                    ]
+                }
+            },
+            "labels": {
+                "name": "pgview",
+                "environment": "production",
+                "app": "pgview",
+                "track": "canary"
+            }
+        }
+    },
+    "labels": {
+        "name": "pgview",
+        "environment": "production",
+        "app": "pgview",
+        "track": "canary"
+    }
+}

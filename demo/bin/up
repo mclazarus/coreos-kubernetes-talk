@@ -1,0 +1,9 @@
+#!/bin/bash
+
+vmrun="/Applications/VMware Fusion.app/Contents/Library/vmrun"
+
+for vm in etcd kubernetes node0 node1 node2; do
+  echo "starting ${vm}..."
+  "$vmrun" start "/Users/kelseyhightower/Documents/Virtual Machines.localized/${vm}.vmwarevm/${vm}.vmx" nogui
+  sleep 4
+done
